@@ -24,7 +24,7 @@ from sense_hat import SenseHat
 sense = SenseHat()
 
 # Rotation (Default=0)
-sense.set_rotation(90)
+sense.set_rotation(270)
 
 debug = 0
 
