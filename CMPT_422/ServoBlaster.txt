@@ -1,0 +1,67 @@
+The code defaults to driving 8 servos, the control signals of which should be
+connected to P1 header pins as follows:
+
+     Servo number    GPIO number   Pin in P1 header
+          0               4             P1-7
+          1              17             P1-11
+          2              18             P1-12
+          3             21/27           P1-13
+          4              22             P1-15
+          5              23             P1-16
+          6              24             P1-18
+          7              25             P1-22
+
+P1-13 is connected to either GPIO-21 or GPIO-27, depending on board revision.
+
+------------------------------------------------------------------------------
+
+The driver creates a device file, /dev/servoblaster, in to which you can send
+commands.  The command format is either
+
+     <servo-number>=<servo-position>
+or
+     P<header>-<pin>=<servo-position>
+
+------------------------------------------------------------------------------
+
+For the default configuration, example commands to set the first servo
+to the mid position would be any of:
+
+  echo 0=150 > /dev/servoblaster        # Specify as a number of steps
+  echo 0=50% > /dev/servoblaster        # Specify as a percentage
+  echo 0=1500us > /dev/servoblaster     # Specify as microseconds
+  echo P1-7=150 > /dev/servoblaster     # Using P1 pin number rather
+  echo P1-7=50% > /dev/servoblaster     # ... than servo number
+  echo P1-7=1500us > /dev/servoblaster
+
+Servo adjustments may also be specified relative to the current
+position by adding a '+' or '-' prefix to the width as follows:
+
+  echo 0=+10 > /dev/servoblaster
+  echo 0=-20 > /dev/servoblaster
+
+------------------------------------------------------------------------------
+- Start the ServoBlaster deamon
+
+$ cd /
+$ cd /PiBits/ServoBlaster/user
+$ sudo ./servod
+
+echo 0=50% >/dev/servoblaster   //for servo #1
+echo 0=+10% >/dev/servoblaster
+
+echo 1=50% >/dev/servoblaster   //for servo #2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
