@@ -5,7 +5,7 @@ import cv2
 from time import clock
 import sys
 
-#import video
+import video
 
 if __name__ == '__main__':
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     try: fn = sys.argv[1]
     except: fn = 0
-    cam = cv2.VideoCapture(0)
+    cam = video.create_capture(fn, fallback='synth:bg=../cpp/baboon.jpg:class=chess:noise=0.05')
 
     while True:
         flag, frame = cam.read()
@@ -42,7 +42,6 @@ if __name__ == '__main__':
 
         h = np.clip(h*0.005*hist_scale, 0, 1)
         vis = hsv_map*h[:,:,np.newaxis] / 255.0
-        #cv2.resize(img, (960, 540))
         cv2.imshow('hist', vis)
 
         ch = 0xFF & cv2.waitKey(1)
