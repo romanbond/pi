@@ -47,12 +47,27 @@ $ cd /
 $ cd /PiBits/ServoBlaster/user
 $ sudo ./servod
 
+cd /PiBits/ServoBlaster/user
+sudo ./servod
+
 echo 0=50% >/dev/servoblaster   //for servo #1
 echo 0=+10% >/dev/servoblaster
 
-echo 1=50% >/dev/servoblaster   //for servo #2
+echo 1=0% >/dev/servoblaster   //for servo #2
 
 
+
+import os
+import time
+os.system('ls')
+while True
+os.system('echo 0=40% >/dev/servoblaster')
+os.system('echo 0=50% >/dev/servoblaster')
+os.system('echo 3=60% >/dev/servoblaster')
+time.sleep(5)
+os.system('echo 0=70% >/dev/servoblaster')
+os.system('echo 1=40% >/dev/servoblaster')
+os.system('echo 3=50% >/dev/servoblaster')
 
 
 
